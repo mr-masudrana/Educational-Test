@@ -1,35 +1,39 @@
-name: Auto Update Toffee Playlist
+name: Update Toffee Playlist
 
 on:
   schedule:
-    - cron: '0 */4 * * *'  # প্রতি ৪ ঘণ্টায় রান হবে
+    - cron: '0 */4 * * *' # প্রতি ৪ ঘণ্টায় চালানো হবে
   workflow_dispatch:
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
+
+      - name: রিপোজিটরি ক্লোন করুন
         uses: actions/checkout@v2
 
-      - name: Set up Python
+      - name: পাইথন সেটআপ করুন
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
-      - name: Install dependencies
+      - name: নির্ভরতা ইনস্টল করুন
         run: |
-          python -m pip install --upgrade pip
-          pip install requests
+          pip install -r requirements.txt
 
-      - name: Run main.py
+      - name: স্ক্রিপ্ট চালান
         run: python main.py
 
-      - name: Commit and Push Changes
+      - name: পরিবর্তনগুলি কমিট করুন
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add toffee_playlist.m3u
-          git commit -m "Auto update Toffee Playlist" || echo "No changes to commit"
-          git push
+          git diff --cached --quiet || git commit -m "🎯 Auto-updated Toffee playlist with latest cookie"
+
+      - name: পরিবর্তনগুলি পুশ করুন
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
