@@ -1,52 +1,45 @@
-name: Run script and update playlist
+name: run script main.py
 
 on:
   schedule:
-    - cron: '0 */4 * * *'  # প্রতি ৪ ঘণ্টা পরপর চলবে
-  workflow_dispatch:
+    - cron: '0 */4 * * *' # Runs every 6 hours 
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
 
-      - name: Setup Python
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner
+
+      - name: setup python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
-
-      - name: Install Python packages
+          python-version: '3.9' # install the python version needed
+          
+      - name: install python packages
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      - name: Run script (decrypt.py)
+          pip install -r requirements.txt
+          
+      - name: execute py script # run main.py
         env:
           TOFFEE_KEY: ${{ secrets.TOFFEE_KEY }}
           TOFFEE_API: ${{ secrets.TOFFEE_API }}
           password: ${{ secrets.password }}
-        run: |
-          python decrypt.py
 
-      - name: Show debug files
-        run: |
-          echo "=== toffee_playlist.m3u ==="
-          cat toffee_playlist.m3u || echo "Playlist not found"
-          echo "=== cookie.txt ==="
-          cat cookie.txt || echo "Cookie not found"
 
-      - name: Commit changes
+        run: python decrypt.py
+          
+      - name: commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add toffee_playlist.m3u cookie.txt || true
-          git diff --cached --quiet || git commit -m "👉 Auto update playlist and cookie" || true
-
-      - name: Push changes
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "👉 updated M3U8 and Cookie Data" --allow-empty)
+          
+      - name: push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          branch: main 
