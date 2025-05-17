@@ -1,17 +1,27 @@
-# TOFFEE Playlist Downloader (Educational)
+# Toffee Playlist Generator
 
-This tool automatically fetches the latest M3U8 playlist from Toffee Live and saves it locally.
+এই প্রকল্পটি Toffee লাইভ টিভি চ্যানেলগুলোর জন্য একটি `.m3u` প্লেলিস্ট তৈরি করে, যেখানে প্রতিটি চ্যানেলের স্ট্রিম লিংকের সাথে প্রয়োজনীয় cookie হেডার যুক্ত থাকে।
 
-**Note:** For educational use only. Respect Toffee's terms of service.
+## বৈশিষ্ট্যসমূহ
 
-## Features
+- প্রতি ৪ ঘণ্টায় প্লেলিস্ট আপডেট
+- স্বয়ংক্রিয়ভাবে cookie সংগ্রহ এবং প্রয়োগ
+- GitHub Actions ব্যবহার করে অটোমেশন
 
-- Fetches dynamic Edge-Cache-Cookie
-- Downloads .m3u8 playlist file
-- Ready to automate with GitHub Actions
+## ব্যবহারের নির্দেশিকা
+
+1. এই রিপোজিটরিটি ক্লোন করুন।
+2. `requirements.txt` প্রয়োজনীয় পাইথন প্যাকেজ ইনস্টল করুন।
+3. `main.py` স্ক্রিপ্ট চালান।
+4. `toffee_playlist.m3u` ফাইলটি আপনার পছন্দের মিডিয়া প্লেয়ারে ব্যবহার করুন।
+
+## লাইসেন্স
+
+এই প্রকল্পটি [MIT লাইসেন্স](LICENSE) এর অধীনে লাইসেন্সকৃত।
 
 ## Usage
 
 ```bash
 pip install -r requirements.txt
-python playlist_downloader.py
+python main.py
+toffee_playlist.m3u
