@@ -45,8 +45,8 @@
   },
   {
     "name": "IPL Highlights",
-    "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/ipl_highlights/playlist.m3u8",
-    "logo": "https://images.toffeelive.com/images/program/304446/logo/240x240/mobile_logo_194690001744269219.png",
+    "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/slang/sports_highlights_576/sports_highlights_576.m3u8",
+    "logo": "https://assets-prod.services.toffeelive.com/f_webp,w_400,q_100/d60Vs5UBrjBfS2_RV_YV/posters/3cc5bf1e-5a42-415c-8e0e-7a17a1bb64da.png",
     "origin": "https://bldcmprod-cdn.toffeelive.com",
     "referrer": "",
     "userAgent": "Toffee (Linux;Android 14) AndroidXMedia3/1.1.1/64103898/4d2ec9b8c7534adc",
@@ -67,8 +67,8 @@
   },
   {
     "name": "PSL Highlights",
-    "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/psl_highlights/playlist.m3u8",
-    "logo": "https://images.toffeelive.com/images/program/304445/logo/240x240/mobile_logo_194690001744269219.png",
+    "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/slang/pls_highlights_576/pls_highlights_576.m3u8",
+    "logo": "https://assets-prod.services.toffeelive.com/f_webp,w_400,q_100/Ns04LZYBtpl-Sbt7yKqD/posters/fef0cade-0663-4fc7-afb3-7a0b7469d045.png",
     "origin": "https://bldcmprod-cdn.toffeelive.com",
     "referrer": "",
     "userAgent": "Toffee (Linux;Android 14) AndroidXMedia3/1.1.1/64103898/4d2ec9b8c7534adc",
