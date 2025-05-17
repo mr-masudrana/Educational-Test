@@ -1,47 +1,43 @@
 import requests
-import datetime
+import json
 
-# Toffee চ্যানেলগুলোর তথ্য
-channels = [
-    {
-        "name": "TOFFEE Sports VIP",
-        "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/sports_highlights/playlist.m3u8",
-        "logo": "https://images.toffeelive.com/images/program/19779/logo/240x240/mobile_logo_975410001725875598.png"
-    },
-    {
-        "name": "TOFFEE Movies VIP",
-        "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/toffee_movie/playlist.m3u8",
-        "logo": "https://images.toffeelive.com/images/program/2708/logo/240x240/mobile_logo_724353001725875591.png"
-    },
-    {
-        "name": "TOFFEE Dramas VIP",
-        "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/toffee_drama/playlist.m3u8",
-        "logo": "https://images.toffeelive.com/images/program/44878/logo/240x240/mobile_logo_764950001725875605.png"
-    }
+# যেসব চ্যানেল লিংক চেক করে কুকি আপডেট করতে হবে
+channel_links = [
+    "https://bldcmprod-cdn.toffeelive.com/cdn/live/sports_highlights/playlist.m3u8",
+    "https://bldcmprod-cdn.toffeelive.com/cdn/live/toffee_movie/playlist.m3u8",
+    "https://bldcmprod-cdn.toffeelive.com/cdn/live/toffee_drama/playlist.m3u8"
 ]
 
-# Cookie সংগ্রহের ফাংশন
-def get_cookie():
-    headers = {
-        "User-Agent": "Toffee (Linux;Android 14) AndroidXMedia3/1.1.1",
-    }
-    response = requests.get("https://toffeelive.com", headers=headers)
-    cookie = response.headers.get("Set-Cookie", "")
-    if cookie:
-        cookie_value = cookie.split(';')[0]
-        return cookie_value
-    return ""
+headers = {
+    "User-Agent": "Toffee (Linux;Android 14) AndroidXMedia3/1.1.1/64103898/4d2ec9b8c7534adc"
+}
 
-# Cookie সংগ্রহ
-cookie = get_cookie()
+def get_cookie(url):
+    try:
+        response = requests.get(url, headers=headers, allow_redirects=True, timeout=10)
+        cookie = response.headers.get("Set-Cookie", "")
+        return cookie.strip()
+    except Exception as e:
+        print(f"Failed to fetch cookie from {url}: {e}")
+        return ""
 
-# .m3u ফাইল তৈরি
+# আগের ফাইল লোড
+with open("toffee_playlist.m3u", "r", encoding="utf-8") as f:
+    playlist = json.load(f)
+
+# প্রতিটি লিংক থেকে কুকি নিয়ে আপডেট করা
+for channel in playlist:
+    link = channel.get("link")
+    if link in channel_links:
+        new_cookie = get_cookie(link)
+        if new_cookie:
+            channel["cookie"] = new_cookie
+            print(f"Updated cookie for {channel['name']}")
+        else:
+            print(f"No cookie fetched for {channel['name']}")
+
+# আবার ফাইলে সেভ করা
 with open("toffee_playlist.m3u", "w", encoding="utf-8") as f:
-    f.write("#EXTM3U\n")
-    for channel in channels:
-        f.write(f'#EXTINF:-1 tvg-logo="{channel["logo"]}",{channel["name"]}\n')
-        if cookie:
-            f.write(f'#EXTVLCOPT:http-header=Cookie={cookie}\n')
-        f.write(f'{channel["link"]}\n')
+    json.dump(playlist, f, indent=2)
 
-print("Playlist updated at", datetime.datetime.now())
+print("Playlist updated successfully.")
