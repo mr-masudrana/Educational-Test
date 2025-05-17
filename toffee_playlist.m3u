@@ -45,8 +45,8 @@
   },
   {
     "name": "IPL Highlights",
-    "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/slang/sports_highlights_576/sports_highlights_576.m3u8",
-    "logo": "https://images.toffeelive.com/images/program/304445/logo/240x240/mobile_logo_194690001744269219.png",
+    "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/ipl_highlights/playlist.m3u8",
+    "logo": "https://images.toffeelive.com/images/program/304446/logo/240x240/mobile_logo_194690001744269219.png",
     "origin": "https://bldcmprod-cdn.toffeelive.com",
     "referrer": "",
     "userAgent": "Toffee (Linux;Android 14) AndroidXMedia3/1.1.1/64103898/4d2ec9b8c7534adc",
