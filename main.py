@@ -1,6 +1,5 @@
 import requests
 import json
-from datetime import datetime
 
 PRIMARY_URL = "https://raw.githubusercontent.com/byte-capsule/Toffee-Channels-Link-Headers/main/toffee_channel_data.json"
 BACKUP_URL = "https://cdn.jsdelivr.net/gh/byte-capsule/Toffee-Channels-Link-Headers@main/toffee_channel_data.json"
