@@ -2,7 +2,7 @@ name: Update Toffee Playlist
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # প্রতি ৬ ঘন্টায় চলবে
+    - cron: '0 */6 * * *'  # প্রতি ৬ ঘণ্টায় চলবে
   workflow_dispatch:
 
 jobs:
@@ -23,9 +23,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Script
-        env:
-          TOFFEE_KEY: ${{ secrets.TOFFEE_KEY }}
-          TOFFEE_API: ${{ secrets.TOFFEE_API }}
         run: python main.py
 
       - name: Commit and Push Changes
