@@ -1,48 +1,41 @@
 import requests
 import json
+from datetime import datetime
 
-# Toffee চ্যানেল ডেটার URL
-json_url = "https://raw.githubusercontent.com/byte-capsule/Toffee-Channels-Link-Headers/main/toffee_channel_data.json"
+PRIMARY_URL = "https://raw.githubusercontent.com/byte-capsule/Toffee-Channels-Link-Headers/main/toffee_channel_data.json"
+BACKUP_URL = "https://cdn.jsdelivr.net/gh/byte-capsule/Toffee-Channels-Link-Headers@main/toffee_channel_data.json"
 
-try:
-    # JSON ডেটা সংগ্রহ
-    response = requests.get(json_url, timeout=10)
-    response.raise_for_status()
-    data = response.json()
+def fetch_channel_data():
+    try:
+        print("Trying primary source...")
+        r = requests.get(PRIMARY_URL, timeout=10)
+        r.raise_for_status()
+        return r.json()
+    except Exception as e:
+        print(f"Primary failed: {e}, trying backup...")
+        r = requests.get(BACKUP_URL)
+        r.raise_for_status()
+        return r.json()
 
-    # চ্যানেল তথ্য সংগ্রহ
-    channels = data.get("channels", [])
+def generate_m3u(channels):
+    output = "#EXTM3U\n"
+    for ch in channels:
+        output += f'#EXTINF:-1 tvg-logo="{ch["logo"]}",{ch["name"]}\n'
+        output += f'#EXTVLCOPT:http-referrer={ch["referrer"]}\n'
+        output += f'#EXTVLCOPT:http-user-agent={ch["userAgent"]}\n'
+        output += f'#EXTVLCOPT:http-cookie={ch["cookie"]}\n'
+        output += f'{ch["link"]}\n\n'
+    return output
 
-    # নতুন প্লেলিস্ট তৈরি
-    playlist = []
-    for channel in channels:
-        name = channel.get("name", "")
-        link = channel.get("link", "")
-        logo = channel.get("logo", "")
-        headers = channel.get("headers", {})
-        cookie = headers.get("cookie", "")
-
-        playlist.append({
-            "name": name,
-            "link": link,
-            "logo": logo,
-            "origin": "https://bldcmprod-cdn.toffeelive.com",
-            "referrer": "",
-            "userAgent": "Toffee (Linux;Android 14) AndroidXMedia3/1.1.1/64103898/4d2ec9b8c7534adc",
-            "cookie": cookie,
-            "drmScheme": "",
-            "drmLicense": ""
-        })
-
-    # প্লেলিস্ট ফাইল সংরক্ষণ
+def save_m3u(content):
     with open("toffee_playlist.m3u", "w", encoding="utf-8") as f:
-        json.dump(playlist, f, indent=2)
+        f.write(content)
 
-    print("✅ toffee_playlist.m3u ফাইল সফলভাবে তৈরি হয়েছে।")
-
-except requests.RequestException as e:
-    print(f"❌ ডেটা সংগ্রহে সমস্যা: {e}")
-except json.JSONDecodeError as e:
-    print(f"❌ JSON ডেটা পার্স করতে সমস্যা: {e}")
-except Exception as e:
-    print(f"❌ একটি অপ্রত্যাশিত ত্রুটি ঘটেছে: {e}")
+if __name__ == "__main__":
+    try:
+        channels = fetch_channel_data()
+        m3u_content = generate_m3u(channels)
+        save_m3u(m3u_content)
+        print("Playlist updated successfully.")
+    except Exception as e:
+        print(f"Failed to update: {e}")
