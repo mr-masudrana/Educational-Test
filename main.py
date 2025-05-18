@@ -1,43 +1,48 @@
 import requests
 import json
 
-# যেসব চ্যানেল লিংক চেক করে কুকি আপডেট করতে হবে
-channel_links = [
-    "https://bldcmprod-cdn.toffeelive.com/cdn/live/sports_highlights/playlist.m3u8",
-    "https://bldcmprod-cdn.toffeelive.com/cdn/live/toffee_movie/playlist.m3u8",
-    "https://bldcmprod-cdn.toffeelive.com/cdn/live/toffee_drama/playlist.m3u8"
-]
+# Toffee চ্যানেল ডেটার URL
+json_url = "https://raw.githubusercontent.com/byte-capsule/Toffee-Channels-Link-Headers/main/toffee_channel_data.json"
 
-headers = {
-    "User-Agent": "Toffee (Linux;Android 14) AndroidXMedia3/1.1.1/64103898/4d2ec9b8c7534adc"
-}
+try:
+    # JSON ডেটা সংগ্রহ
+    response = requests.get(json_url, timeout=10)
+    response.raise_for_status()
+    data = response.json()
 
-def get_cookie(url):
-    try:
-        response = requests.get(url, headers=headers, allow_redirects=True, timeout=10)
-        cookie = response.headers.get("Set-Cookie", "")
-        return cookie.strip()
-    except Exception as e:
-        print(f"Failed to fetch cookie from {url}: {e}")
-        return ""
+    # চ্যানেল তথ্য সংগ্রহ
+    channels = data.get("channels", [])
 
-# আগের ফাইল লোড
-with open("toffee_playlist.m3u", "r", encoding="utf-8") as f:
-    playlist = json.load(f)
+    # নতুন প্লেলিস্ট তৈরি
+    playlist = []
+    for channel in channels:
+        name = channel.get("name", "")
+        link = channel.get("link", "")
+        logo = channel.get("logo", "")
+        headers = channel.get("headers", {})
+        cookie = headers.get("cookie", "")
 
-# প্রতিটি লিংক থেকে কুকি নিয়ে আপডেট করা
-for channel in playlist:
-    link = channel.get("link")
-    if link in channel_links:
-        new_cookie = get_cookie(link)
-        if new_cookie:
-            channel["cookie"] = new_cookie
-            print(f"Updated cookie for {channel['name']}")
-        else:
-            print(f"No cookie fetched for {channel['name']}")
+        playlist.append({
+            "name": name,
+            "link": link,
+            "logo": logo,
+            "origin": "https://bldcmprod-cdn.toffeelive.com",
+            "referrer": "",
+            "userAgent": "Toffee (Linux;Android 14) AndroidXMedia3/1.1.1/64103898/4d2ec9b8c7534adc",
+            "cookie": cookie,
+            "drmScheme": "",
+            "drmLicense": ""
+        })
 
-# আবার ফাইলে সেভ করা
-with open("toffee_playlist.m3u", "w", encoding="utf-8") as f:
-    json.dump(playlist, f, indent=2)
+    # প্লেলিস্ট ফাইল সংরক্ষণ
+    with open("toffee_playlist.m3u", "w", encoding="utf-8") as f:
+        json.dump(playlist, f, indent=2)
 
-print("Playlist updated successfully.")
+    print("✅ toffee_playlist.m3u ফাইল সফলভাবে তৈরি হয়েছে।")
+
+except requests.RequestException as e:
+    print(f"❌ ডেটা সংগ্রহে সমস্যা: {e}")
+except json.JSONDecodeError as e:
+    print(f"❌ JSON ডেটা পার্স করতে সমস্যা: {e}")
+except Exception as e:
+    print(f"❌ একটি অপ্রত্যাশিত ত্রুটি ঘটেছে: {e}")
