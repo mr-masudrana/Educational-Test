@@ -2,7 +2,7 @@ import requests
 import json
 
 # Toffee চ্যানেল ডেটার URL
-json_url = "https://raw.githubusercontent.com/byte-capsule/Toffee-Channels-Link-Headers/main/toffee_channel_data.json"
+json_url = "https://raw.githubusercontent.com/abusaeeidx/Toffee-playlist/refs/heads/main/script_api/data.json"
 
 try:
     # JSON ডেটা সংগ্রহ
