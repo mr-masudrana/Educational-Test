@@ -8,7 +8,7 @@
     {
       "category_name": "Infotainment",
       "name": "Discovery HD",
-      "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/slang/discovery_hd_576/discovery_hd_576.m3u8",
+      "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/discovery_hd/playlist.m3u8",
       "headers": {
         "Host": "bldcmprod-cdn.toffeelive.com",
         "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9ibGRjbXByb2QtY2RuLnRvZmZlZWxpdmUuY29t:Expires=1755583788:KeyName=prod_linear:Signature=fQNXIFkhMzHPBfZap_0LnfT_1BUuSSO98w--Rsu2RmYReFyn0bOufkxZEPIjnMi7Vb88L8vwX9cj9Be6MtL7Ag",
