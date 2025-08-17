@@ -1,1 +1,50 @@
+name: Generate Ns Playlist
 
+on:
+  push:
+    paths:
+      - "data/channels.json"
+
+jobs:
+  generate-playlist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Generate ns_playlist.m3u
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+
+          // Read channels.json
+          const channelsData = JSON.parse(fs.readFileSync('data/channels.json'));
+
+          // Map to playlist format
+          const playlist = channelsData.channels.map(channel => ({
+            category_name: channel.category || channel.category_name || "",
+            name: channel.name || "",
+            logo: channel.logo || "",
+            link: channel.link || "",
+            cookie: channel.headers?.cookie || channel.cookie || ""
+          }));
+
+          // Write playlist.json
+          fs.writeFileSync('ns_playlist.m3u', JSON.stringify(playlist, null, 2));
+          EOF
+
+      - name: Commit & Push ns_playlist.m3u
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ns_playlist.m3u
+          git commit -m "Auto-generate ns_playlist.m3u from data/channels.json" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
