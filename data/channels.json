@@ -3,7 +3,7 @@
   "name": "Toffee Channels",
   "owner": "Toffee.com",
   "channels_amount": 50,
-  "updated_on": "16-08-2025 on 11:51:04 AM",
+  "last_updated": "16-08-2025 on 11:51:04 AM",
   "channels": [
     {
       "category_name": "Infotainment",
@@ -31,6 +31,5 @@
       },
       "logo": "https://assets-prod.services.toffeelive.com/f_webp,w_240,q_100/Uy6Q-JQBv9knK3AHcDUQ/posters/01709bcd-6d53-4710-a64f-bc49cecf1d61.webp"
     }
-  ],
-  "last_updated": "17-08-2025 on 11:31:48 AM"
+  ]
 }
