@@ -4,13 +4,13 @@
     "name": "Discovery HD",
     "logo": "https://assets-prod.services.toffeelive.com/f_webp,w_240,q_100/KC6x-JQBv9knK3AHqjYc/posters/55e554f1-dbbb-47bd-97fe-fca878726c4c.webp",
     "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/slang/discovery_hd_576/discovery_hd_576.m3u8",
-    "cookie": "Hello"
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9ibGRjbXByb2QtY2RuLnRvZmZlZWxpdmUuY29t:Expires=1755583788:KeyName=prod_linear:Signature=fQNXIFkhMzHPBfZap_0LnfT_1BUuSSO98w--Rsu2RmYReFyn0bOufkxZEPIjnMi7Vb88L8vwX9cj9Be6MtL7Ag"
   },
   {
     "category_name": "Sports",
     "name": "Eurosport HD",
     "logo": "https://assets-prod.services.toffeelive.com/f_webp,w_240,q_100/Uy6Q-JQBv9knK3AHcDUQ/posters/01709bcd-6d53-4710-a64f-bc49cecf1d61.webp",
     "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/euro_sports_hd/playlist.m3u8",
-    "cookie": "Hello"
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9ibGRjbXByb2QtY2RuLnRvZmZlZWxpdmUuY29t:Expires=1755583788:KeyName=prod_linear:Signature=fQNXIFkhMzHPBfZap_0LnfT_1BUuSSO98w--Rsu2RmYReFyn0bOufkxZEPIjnMi7Vb88L8vwX9cj9Be6MtL7Ag"
   }
 ]
