@@ -3,7 +3,7 @@
   "name": "Toffee Channels",
   "owner": "Toffee.com",
   "channels_amount": 50,
-  "last_updated": "17-08-2025 on 11:38:03 AM",
+  "last_updated": "17-08-2025 on 11:42:53 AM",
   "channels": [
     {
       "category_name": "Infotainment",
@@ -11,7 +11,7 @@
       "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/slang/discovery_hd_576/discovery_hd_576.m3u8",
       "headers": {
         "Host": "bldcmprod-cdn.toffeelive.com",
-        "cookie": "9999mr-masudrana/toffee_playlist",
+        "cookie": "mr-masudrana/toffee_playlist",
         "user-agent": "Toffee (Linux;Android 14) AndroidXMedia3/1.1.1/64103898/4d2ec9b8c7534adc",
         "client-api-header": "null",
         "accept-encoding": "gzip"
@@ -24,7 +24,7 @@
       "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/euro_sports_hd/playlist.m3u8",
       "headers": {
         "Host": "bldcmprod-cdn.toffeelive.com",
-        "cookie": "9999mr-masudrana/toffee_playlist",
+        "cookie": "mr-masudrana/toffee_playlist",
         "user-agent": "Toffee (Linux;Android 14) AndroidXMedia3/1.1.1/64103898/4d2ec9b8c7534adc",
         "client-api-header": "null",
         "accept-encoding": "gzip"
