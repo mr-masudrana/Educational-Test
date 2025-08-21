@@ -1,5 +1,26 @@
 [
   {
+    "category_name": "Epl",
+    "name": "EPL LIVE 1 ",
+    "logo": "https://assets-prod.services.toffeelive.com/JS1AqZgBNnOkwJLWlwg-/posters/08617b27-2af1-4035-bcc3-d054ce42ca4b.png",
+    "link": "https://mprod-cdn.toffeelive.com/live/match-1/index.m3u8",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9ibGRjbXByb2QtY2RuLnRvZmZlZWxpdmUuY29t:Expires=1755447663:KeyName=prod_linear:Signature=Eal0yyECXRDDK272OD9p2pUhVNLdGGBmtWQ68PDiwT2o3TZYv_b0xxgkvtaYufzljYyVCPTicsmUEuDB5hwMAA"
+  },
+  {
+    "category_name": "Epl",
+    "name": "EPL LIVE 2 ",
+    "logo": "https://assets-prod.services.toffeelive.com/Mi1QqZgBNnOkwJLWxggo/posters/3e9d4d0a-a346-4b39-92b5-13e9238ad240.png",
+    "link": "https://mprod-cdn.toffeelive.com/live/match-2/index.m3u8",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9ibGRjbXByb2QtY2RuLnRvZmZlZWxpdmUuY29t:Expires=1755447663:KeyName=prod_linear:Signature=Eal0yyECXRDDK272OD9p2pUhVNLdGGBmtWQ68PDiwT2o3TZYv_b0xxgkvtaYufzljYyVCPTicsmUEuDB5hwMAA"
+  },
+  {
+    "category_name": "Epl",
+    "name": "EPL LIVE 3 ",
+    "logo": "https://assets-prod.services.toffeelive.com/Pi1TqZgBNnOkwJLWVggf/posters/d0bb78b5-4690-4c12-9c7b-e785eb8d7336.png",
+    "link": "https://mprod-cdn.toffeelive.com/live/match-3/index.m3u8",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9ibGRjbXByb2QtY2RuLnRvZmZlZWxpdmUuY29t:Expires=1755447663:KeyName=prod_linear:Signature=Eal0yyECXRDDK272OD9p2pUhVNLdGGBmtWQ68PDiwT2o3TZYv_b0xxgkvtaYufzljYyVCPTicsmUEuDB5hwMAA"
+  },
+  {
     "category_name": "Sports",
     "name": "Sony Ten Sports 1 HD",
     "logo": "https://assets-prod.services.toffeelive.com/f_png,w_300,q_85/py5j-JQBv9knK3AHxDTY/posters/ea3358b9-2bec-4615-a889-daa2e396c74c.webp",
